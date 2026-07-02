@@ -10,6 +10,25 @@ import { Loader2, Trash2, Wallet } from 'lucide-react'
 import { toast } from 'sonner'
 import type { ClientTransaction } from './types'
 
+function getDisplayTime(tx: ClientTransaction): string | null {
+  if (tx.time && tx.time.trim()) {
+    return tx.time
+  }
+  if (tx.createdAt) {
+    try {
+      const d = new Date(tx.createdAt)
+      if (!isNaN(d.getTime())) {
+        const hours = String(d.getHours()).padStart(2, '0')
+        const minutes = String(d.getMinutes()).padStart(2, '0')
+        return `${hours}:${minutes}`
+      }
+    } catch {
+      // ignore
+    }
+  }
+  return null
+}
+
 export function TransactionList({
   transactions,
   onChanged,
@@ -44,8 +63,8 @@ export function TransactionList({
   // 결제 시간 기준으로 각 그룹 내 정렬 (최신 시간 우선)
   for (const [date, items] of groups.entries()) {
     items.sort((a, b) => {
-      const timeA = a.time || ''
-      const timeB = b.time || ''
+      const timeA = getDisplayTime(a) || ''
+      const timeB = getDisplayTime(b) || ''
       if (timeA !== timeB) {
         return timeB.localeCompare(timeA)
       }
@@ -115,9 +134,9 @@ export function TransactionList({
                         {tx.description || cat?.label || '거래'}
                       </span>
                       <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        {tx.time && (
+                        {getDisplayTime(tx) && (
                           <>
-                            <span className="font-semibold text-foreground/80 tabular-nums">{tx.time}</span>
+                            <span className="font-semibold text-foreground/80 tabular-nums">{getDisplayTime(tx)}</span>
                             <span aria-hidden>·</span>
                           </>
                         )}
