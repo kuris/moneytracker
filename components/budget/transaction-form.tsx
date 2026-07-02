@@ -23,6 +23,7 @@ function parseSMS(text: string) {
   
   let amount = '';
   let date = '';
+  let time = '';
   let description = '';
   let author = '';
   let paymentMethod = '';
@@ -49,11 +50,21 @@ function parseSMS(text: string) {
     const line = lines[i];
 
     const dateMatch = line.match(/(\d{2})[/-](\d{2})\s+(\d{2}):(\d{2})/) || line.match(/(\d{2})[/-](\d{2})/);
-    if (dateMatch && !date) {
-      const currentYear = new Date().getFullYear();
-      const month = dateMatch[1];
-      const day = dateMatch[2];
-      date = `${currentYear}-${month}-${day}`;
+    if (dateMatch) {
+      if (!date) {
+        const currentYear = new Date().getFullYear();
+        const month = dateMatch[1];
+        const day = dateMatch[2];
+        date = `${currentYear}-${month}-${day}`;
+      }
+      if (dateMatch[3] && dateMatch[4] && !time) {
+        time = `${dateMatch[3]}:${dateMatch[4]}`;
+      }
+    }
+
+    const timeMatch = line.match(/(\d{2}):(\d{2})/);
+    if (timeMatch && !time) {
+      time = `${timeMatch[1]}:${timeMatch[2]}`;
     }
 
     if (!line.includes('누적')) {
@@ -113,6 +124,7 @@ function parseSMS(text: string) {
   return {
     amount,
     date,
+    time,
     description,
     author,
     paymentMethod,
@@ -139,16 +151,17 @@ function guessCategory(description: string): string {
   if (desc.includes('영화') || desc.includes('cgv') || desc.includes('넷플릭스') || desc.includes('공연') || desc.includes('티켓') || desc.includes('도서') || desc.includes('책') || desc.includes('노래방') || desc.includes('게임')) {
     return 'culture';
   }
-  return 'etc_expense';
+  return 'food'; // Default fallback is 'food' (식비)
 }
 
 export function TransactionForm({ onAdded }: { onAdded: () => void }) {
   const [author, setAuthor] = useState<string>(AUTHORS[0])
   const [type, setType] = useState<TxType>('expense')
-  const [category, setCategory] = useState<string>('')
+  const [category, setCategory] = useState<string>('food') // default to 'food'
   const [amount, setAmount] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [date, setDate] = useState<string>(todayISO())
+  const [time, setTime] = useState<string>('')
   const [paymentMethod, setPaymentMethod] = useState<string>('card')
   const [submitting, setSubmitting] = useState(false)
   const [smsText, setSmsText] = useState('')
@@ -157,7 +170,7 @@ export function TransactionForm({ onAdded }: { onAdded: () => void }) {
 
   function changeType(next: TxType) {
     setType(next)
-    setCategory('')
+    setCategory(next === 'income' ? 'salary' : 'food')
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -180,14 +193,16 @@ export function TransactionForm({ onAdded }: { onAdded: () => void }) {
         amount: numericAmount,
         description,
         paymentMethod,
+        time: time || null,
         date,
       })
       toast.success('저장되었습니다.')
       setAmount('')
       setDescription('')
-      setCategory('')
+      setCategory(type === 'income' ? 'salary' : 'food')
       setSmsText('')
       setPaymentMethod('card')
+      setTime('')
       onAdded()
     } catch (err) {
       toast.error('저장에 실패했습니다. 다시 시도해 주세요.')
@@ -219,6 +234,9 @@ export function TransactionForm({ onAdded }: { onAdded: () => void }) {
             if (parsed.date) {
               setDate(parsed.date)
             }
+            if (parsed.time) {
+              setTime(parsed.time)
+            }
             if (parsed.description) {
               setDescription(parsed.description)
               // Guess category
@@ -242,8 +260,9 @@ export function TransactionForm({ onAdded }: { onAdded: () => void }) {
               setSmsText('')
               setAmount('')
               setDescription('')
-              setCategory('')
+              setCategory('food')
               setDate(todayISO())
+              setTime('')
             }}
             className="text-[10px] text-muted-foreground hover:text-destructive self-end font-medium transition-colors"
           >
@@ -338,18 +357,32 @@ export function TransactionForm({ onAdded }: { onAdded: () => void }) {
         </div>
       </div>
 
-      {/* 날짜 */}
-      <div className="flex flex-col gap-2">
-        <Label htmlFor="date" className="text-sm text-muted-foreground">
-          날짜
-        </Label>
-        <Input
-          id="date"
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className="h-11"
-        />
+      {/* 날짜 & 시간 */}
+      <div className="grid grid-cols-2 gap-2">
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="date" className="text-sm text-muted-foreground">
+            날짜
+          </Label>
+          <Input
+            id="date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="h-11"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="time" className="text-sm text-muted-foreground">
+            시간
+          </Label>
+          <Input
+            id="time"
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            className="h-11"
+          />
+        </div>
       </div>
 
       {/* 분류 */}

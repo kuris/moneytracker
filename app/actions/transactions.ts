@@ -19,6 +19,7 @@ export type NewTransaction = {
   amount: number
   description?: string
   paymentMethod: string
+  time?: string | null
   date: string // YYYY-MM-DD
 }
 
@@ -37,6 +38,7 @@ export async function addTransaction(input: NewTransaction) {
     amount: input.amount.toFixed(2),
     description: input.description?.trim() || null,
     paymentMethod: input.paymentMethod || 'card',
+    time: input.time || null,
     date: input.date,
   })
 

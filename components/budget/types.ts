@@ -6,6 +6,7 @@ export type ClientTransaction = {
   amount: string
   description: string | null
   paymentMethod: string
+  time: string | null
   date: string
   createdAt: string | Date
 }

@@ -41,6 +41,18 @@ export function TransactionList({
     groups.set(tx.date, list)
   }
 
+  // 결제 시간 기준으로 각 그룹 내 정렬 (최신 시간 우선)
+  for (const [date, items] of groups.entries()) {
+    items.sort((a, b) => {
+      const timeA = a.time || ''
+      const timeB = b.time || ''
+      if (timeA !== timeB) {
+        return timeB.localeCompare(timeA)
+      }
+      return b.id - a.id
+    })
+  }
+
   async function handleDelete(id: number) {
     setDeletingId(id)
     try {
@@ -103,6 +115,12 @@ export function TransactionList({
                         {tx.description || cat?.label || '거래'}
                       </span>
                       <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        {tx.time && (
+                          <>
+                            <span className="font-semibold text-foreground/80 tabular-nums">{tx.time}</span>
+                            <span aria-hidden>·</span>
+                          </>
+                        )}
                         <span>{cat?.label}</span>
                         <span aria-hidden>·</span>
                         <span>{tx.author}</span>
