@@ -14,18 +14,6 @@ function getDisplayTime(tx: ClientTransaction): string | null {
   if (tx.time && tx.time.trim()) {
     return tx.time
   }
-  if (tx.createdAt) {
-    try {
-      const d = new Date(tx.createdAt)
-      if (!isNaN(d.getTime())) {
-        const hours = String(d.getHours()).padStart(2, '0')
-        const minutes = String(d.getMinutes()).padStart(2, '0')
-        return `${hours}:${minutes}`
-      }
-    } catch {
-      // ignore
-    }
-  }
   return null
 }
 
