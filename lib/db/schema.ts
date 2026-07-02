@@ -14,6 +14,7 @@ export const transactions = pgTable('transactions', {
   category: text('category').notNull(),
   amount: numeric('amount', { precision: 12, scale: 2 }).notNull(),
   description: text('description'),
+  paymentMethod: text('payment_method').notNull().default('card'), // 'card' | 'cash'
   date: date('date').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()

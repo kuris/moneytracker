@@ -106,6 +106,15 @@ export function TransactionList({
                         <span>{cat?.label}</span>
                         <span aria-hidden>·</span>
                         <span>{tx.author}</span>
+                        <span aria-hidden>·</span>
+                        <span className={cn(
+                          "inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-medium ring-1 ring-inset",
+                          tx.paymentMethod === 'cash' 
+                            ? "bg-amber-500/10 text-amber-600 ring-amber-500/20 dark:text-amber-400" 
+                            : "bg-sky-500/10 text-sky-600 ring-sky-500/20 dark:text-sky-400"
+                        )}>
+                          {tx.paymentMethod === 'cash' ? '현금' : '카드'}
+                        </span>
                       </span>
                     </div>
                     <span
