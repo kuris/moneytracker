@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Header } from '@/components/layout/Header'
 import { Navigation } from '@/components/layout/Navigation'
 import { TransactionModal } from '@/components/features/TransactionModal'
+import { RootClient } from '@/app/RootClient'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -32,18 +33,20 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-secondary text-primary">
-        <div className="flex flex-col lg:flex-row min-h-screen">
-          <Header />
-          <div className="flex flex-1">
-            <Navigation />
-            <main className="flex-1 overflow-auto">
-              <div className="p-4 sm:p-6 lg:p-8">
-                {children}
-              </div>
-            </main>
+        <RootClient>
+          <div className="flex flex-col lg:flex-row min-h-screen">
+            <Header />
+            <div className="flex flex-1">
+              <Navigation />
+              <main className="flex-1 overflow-auto">
+                <div className="p-4 sm:p-6 lg:p-8">
+                  {children}
+                </div>
+              </main>
+            </div>
           </div>
-        </div>
-        <TransactionModal />
+          <TransactionModal />
+        </RootClient>
       </body>
     </html>
   )
