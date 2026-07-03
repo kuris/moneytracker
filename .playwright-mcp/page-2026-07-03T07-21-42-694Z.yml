@@ -1,0 +1,58 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - banner [ref=f2e3]:
+      - generic [ref=f2e5]:
+        - generic [ref=f2e6]:
+          - button "Toggle sidebar" [ref=f2e7] [cursor=pointer]:
+            - img [ref=f2e8]
+          - generic [ref=f2e10]:
+            - heading "가계부" [level=1] [ref=f2e11]
+            - paragraph [ref=f2e12]: Household Budget App
+        - generic [ref=f2e13]:
+          - button "Switch to dark mode" [ref=f2e14] [cursor=pointer]:
+            - img [ref=f2e15]
+          - button "Profile" [ref=f2e17] [cursor=pointer]:
+            - img [ref=f2e18]
+    - generic [ref=f2e20]:
+      - navigation [ref=f2e22]:
+        - generic [ref=f2e24]:
+          - link "대시보드" [ref=f2e25] [cursor=pointer]:
+            - /url: /
+            - img [ref=f2e26]
+            - generic [ref=f2e30]: 대시보드
+          - link "지출" [ref=f2e31] [cursor=pointer]:
+            - /url: /expenses
+            - img [ref=f2e32]
+            - generic [ref=f2e35]: 지출
+          - link "수입" [ref=f2e36] [cursor=pointer]:
+            - /url: /income
+            - img [ref=f2e37]
+            - generic [ref=f2e39]: 수입
+          - link "분석" [ref=f2e40] [cursor=pointer]:
+            - /url: /monthly
+            - img [ref=f2e41]
+            - generic [ref=f2e43]: 분석
+          - link "설정" [ref=f2e44] [cursor=pointer]:
+            - /url: /settings
+            - img [ref=f2e45]
+            - generic [ref=f2e47]: 설정
+      - main [ref=f2e48]:
+        - generic [ref=f2e51]:
+          - generic [ref=f2e52]:
+            - generic [ref=f2e53]: ❤️
+            - heading "가계부" [level=1] [ref=f2e54]
+            - paragraph [ref=f2e55]: 부부가 함께 관리하는 가계부
+          - generic [ref=f2e56]:
+            - generic [ref=f2e57]:
+              - generic [ref=f2e58]: 이메일
+              - textbox "you@example.com" [ref=f2e59]
+            - generic [ref=f2e60]:
+              - generic [ref=f2e61]: 비밀번호
+              - textbox "••••••••" [ref=f2e62]
+            - button "로그인" [ref=f2e63] [cursor=pointer]
+          - paragraph [ref=f2e65]:
+            - text: 계정이 없으신가요?
+            - link "회원가입" [ref=f2e66] [cursor=pointer]:
+              - /url: /signup
+          - button "데모 계정으로 시작" [ref=f2e68] [cursor=pointer]
+  - alert [ref=f2e69]

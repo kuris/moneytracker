@@ -1,0 +1,110 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - button "Toggle sidebar" [ref=e7] [cursor=pointer]:
+            - img [ref=e8]
+          - generic [ref=e10]:
+            - heading "가계부" [level=1] [ref=e11]
+            - paragraph [ref=e12]: Household Budget App
+        - generic [ref=e13]:
+          - button "Switch to dark mode" [ref=e14] [cursor=pointer]:
+            - img [ref=e15]
+          - button "Profile" [ref=e17] [cursor=pointer]:
+            - img [ref=e18]
+    - generic [ref=e20]:
+      - navigation [ref=e22]:
+        - generic [ref=e24]:
+          - link "대시보드" [ref=e25] [cursor=pointer]:
+            - /url: /
+            - img [ref=e26]
+            - generic [ref=e30]: 대시보드
+          - link "지출" [ref=e31] [cursor=pointer]:
+            - /url: /expenses
+            - img [ref=e32]
+            - generic [ref=e35]: 지출
+          - link "수입" [ref=e36] [cursor=pointer]:
+            - /url: /income
+            - img [ref=e37]
+            - generic [ref=e39]: 수입
+          - link "분석" [ref=e40] [cursor=pointer]:
+            - /url: /monthly
+            - img [ref=e41]
+            - generic [ref=e43]: 분석
+          - link "설정" [ref=e44] [cursor=pointer]:
+            - /url: /settings
+            - img [ref=e45]
+            - generic [ref=e47]: 설정
+      - main [ref=e48]:
+        - generic [ref=e50]:
+          - generic [ref=e52]:
+            - generic [ref=e53]: ❤️
+            - heading "우리 함께 절약 중이에요" [level=1] [ref=e54]
+            - paragraph [ref=e55]: 2026년 7월 3일 금요일
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - heading "📅 이번주 예산" [level=3] [ref=e59]
+                - button "설정" [ref=e60] [cursor=pointer]
+              - paragraph [ref=e61]: 이번주 예산을 설정해주세요
+            - generic [ref=e63]:
+              - img [ref=e64]
+              - generic [ref=e67]:
+                - generic [ref=e68]: 0%
+                - generic [ref=e69]: 목표 중
+            - generic [ref=e70]:
+              - generic [ref=e71]: ❄️
+              - paragraph [ref=e72]: 절약했어요!
+            - generic [ref=e73]:
+              - generic [ref=e74]:
+                - generic [ref=e75]: 🎯
+                - heading "오늘의 목표" [level=3] [ref=e76]
+              - generic [ref=e77]: ₩0 / ₩50,000
+            - generic [ref=e78]:
+              - generic [ref=e80]:
+                - generic [ref=e81]:
+                  - generic [ref=e82]: ☕
+                  - heading "커피" [level=4] [ref=e83]
+                - generic [ref=e85]: ₩0
+              - generic [ref=e88]:
+                - generic [ref=e89]:
+                  - generic [ref=e90]: 🍽️
+                  - heading "식사" [level=4] [ref=e91]
+                - generic [ref=e93]: ₩0
+              - generic [ref=e96]:
+                - generic [ref=e97]:
+                  - generic [ref=e98]: 🚕
+                  - heading "이동" [level=4] [ref=e99]
+                - generic [ref=e101]: ₩0
+              - generic [ref=e104]:
+                - generic [ref=e105]:
+                  - generic [ref=e106]: 🛍️
+                  - heading "쇼핑" [level=4] [ref=e107]
+                - generic [ref=e109]: ₩0
+              - generic [ref=e112]:
+                - generic [ref=e113]:
+                  - generic [ref=e114]: 📚
+                  - heading "책" [level=4] [ref=e115]
+                - generic [ref=e117]: ₩0
+              - generic [ref=e120]:
+                - generic [ref=e121]:
+                  - generic [ref=e122]: 🎬
+                  - heading "엔터" [level=4] [ref=e123]
+                - generic [ref=e125]: ₩0
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - generic [ref=e130]: 💊
+                  - heading "의료" [level=4] [ref=e131]
+                - generic [ref=e133]: ₩0
+              - generic [ref=e136]:
+                - generic [ref=e137]:
+                  - generic [ref=e138]: 🎁
+                  - heading "선물" [level=4] [ref=e139]
+                - generic [ref=e141]: ₩0
+            - button "+ 새로운 지출 추가" [ref=e143] [cursor=pointer]
+          - generic [ref=e144]:
+            - button "지금" [ref=e145] [cursor=pointer]
+            - button "이달" [ref=e146] [cursor=pointer]
+            - button "공유" [ref=e147] [cursor=pointer]
+  - alert [ref=e148]

@@ -27,7 +27,14 @@
       "Bash(npm install *)",
       "Bash(npm run *)",
       "Bash(git commit -m 'Integrate Supabase for authentication and data persistence *)",
-      "Bash(git commit -m 'Fix Supabase client initialization for runtime validation *)"
+      "Bash(git commit -m 'Fix Supabase client initialization for runtime validation *)",
+      "Bash(git commit -m 'Fix logout button in settings page *)",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_click",
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_fill_form",
+      "Bash(git commit -m 'Fix mobile sidebar overlay blocking login/signup pages *)"
     ]
   }
 }

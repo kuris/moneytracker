@@ -1,13 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/authStore'
+import { useUIStore } from '@/store/uiStore'
 
 export default function SignupPage() {
   const router = useRouter()
   const { setUser } = useAuthStore()
+  const { setSidebarOpen } = useUIStore()
+
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [])
   const [formData, setFormData] = useState({
     email: '',
     password: '',
